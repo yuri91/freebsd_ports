@@ -1,0 +1,23 @@
+PORTNAME=	p4-hlir
+PORTVERSION=	1
+CATEGORIES=	devel python
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+
+MAINTAINER=	dummy@FreeBSD.org
+COMMENT=	P4 HLIR parsing, visualization and validation tool
+
+LICENSE=	APACHE20
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}yaml>0:${PORTSDIR}/devel/py-yaml \
+		${PYTHON_PKGNAMEPREFIX}ply>0:${PORTSDIR}/devel/py-ply
+RUN_DEPENDS:=	${BUILD_DEPENDS}
+
+USES=		python
+USE_PYTHON=	distutils autoplist
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	p4lang
+GH_TAGNAME=	491a689
+
+.include <bsd.port.mk>
