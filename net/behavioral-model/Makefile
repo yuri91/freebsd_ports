@@ -15,7 +15,7 @@ GH_TAGNAME=	8dfe64c
 
 LIB_DEPENDS=	libJudy.so:${PORTSDIR}/devel/judy \
 		libgmp.so:${PORTSDIR}/math/gmp \
-		libpcap.so:${PORTSDIR}/net/libpcap \
+		libpcap.so.1:${PORTSDIR}/net/libpcap \
 		libboost_system.so:${PORTSDIR}/devel/boost-libs \
 		libboost_program_options.so:${PORTSDIR}/devel/boost-libs \
 		libboost_filesystem.so:${PORTSDIR}/devel/boost-libs \
