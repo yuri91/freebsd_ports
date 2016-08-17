@@ -4,6 +4,8 @@ Freebsd ports I made for the GSoC 2016
 
 ## Notes
 
+### net/behavioral-model
+
 The patched files are due to problems with freebsd and the c++11 standard:
 
 - clang on freebsd does not support thread-local variables with non-trivial
@@ -16,4 +18,24 @@ The patched files are due to problems with freebsd and the c++11 standard:
   places, but it is deprecated in c++11, so the related warnings had to be
   suppressed.
 
-- The python package nnpy is not present in ports, so I packaged that as well.
+Also, the name should probably be changed to something more clear, and pkg-descr
+made more verbose
+
+### net/py-nnpy
+
+Run dependency of `net/behavioral-model`, missing in ports.
+Straightforward port.
+
+### devel/py-p4c-bm
+
+Compiler from p4 to the json format used by `net/behavioral-model`. Not a dependency
+but useful
+
+### devel/py-p4-hlir
+
+Parser for p4 programs, dependency of `devel/py-p4c-bm`
+
+### devel/py-Tenjin
+
+Python template engine, dependency of `devel/py-p4c-bm`
+
