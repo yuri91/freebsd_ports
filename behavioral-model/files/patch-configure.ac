@@ -1,0 +1,47 @@
+--- configure.ac.orig	2016-08-03 20:13:48 UTC
++++ configure.ac
+@@ -2,7 +2,7 @@
+ # Process this file with autoconf to produce a configure script.
+ 
+ AC_PREREQ([2.68])
+-AC_INIT([bm], [m4_esyscmd(tools/get_version.sh)],
++AC_INIT([bm], [m4_esyscmd(bash tools/get_version.sh)],
+         [antonin@barefootnetworks.com])
+ AM_INIT_AUTOMAKE([foreign subdir-objects])
+ AC_CONFIG_SRCDIR([src/bm_sim/checksums.cpp])
+@@ -73,6 +73,18 @@ AS_IF([test "x$enable_elogger" != "xno"]
+     MY_CPPFLAGS="$MY_CPPFLAGS -DBMELOG_ON"
+ ])
+ 
++# freebsd needs special handling
++AC_CANONICAL_HOST
++case $host_os in
++    *freebsd*)
++	FREEBSD_CXXFLAGS='-Wno-deprecated-register'
++	FREEBSD=yes
++        ;;
++    *)
++        ;;
++esac
++AM_CONDITIONAL([COND_FREEBSD], [test "x$FREEBSD" == "xyes"])
++
+ # Checks for programs.
+ AC_PROG_CXX
+ AC_PROG_CC
+@@ -155,7 +167,7 @@ AC_SUBST([AM_CPPFLAGS], ["$MY_CPPFLAGS \
+                           -isystem\$(top_srcdir)/third_party/jsoncpp/include \
+                           -isystem\$(top_srcdir)/third_party/spdlog"])
+ 
+-AC_SUBST([AM_CXXFLAGS], ["-Wall -Werror -Wextra"])
++AC_SUBST([AM_CXXFLAGS], ["-Wall -Werror -Wextra $FREEBSD_CXXFLAGS"])
+ AC_SUBST([AM_CFLAGS], [""])
+ 
+ # Checks for typedefs, structures, and compiler characteristics.
+@@ -167,6 +179,7 @@ AC_LANG_POP(C++)
+ 
+ # Generate makefiles
+ AC_CONFIG_FILES([Makefile
++		freebsd/Makefile
+ 		thrift_src/Makefile
+ 		third_party/Makefile
+ 		third_party/gtest/Makefile

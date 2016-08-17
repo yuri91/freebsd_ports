@@ -1,0 +1,18 @@
+--- targets/simple_router/Makefile.am.orig	2016-08-03 20:13:48 UTC
++++ targets/simple_router/Makefile.am
+@@ -1,3 +1,7 @@
++if COND_FREEBSD
++    MAYBE_FREEBSD = $(top_builddir)/freebsd/libcxa_thread_atexit.la -lstdthreads
++endif
++
+ noinst_PROGRAMS = simple_router
+ simple_router_SOURCES = simple_router.cpp primitives.cpp
+ simple_router_LDADD = \
+@@ -7,5 +11,6 @@ $(top_builddir)/src/bf_lpm_trie/libbflpm
+ $(top_builddir)/thrift_src/libruntimestubs.la \
+ $(top_builddir)/src/BMI/libbmi.la \
+ $(top_builddir)/third_party/jsoncpp/libjson.la \
+--lboost_system -lboost_thread $(THRIFT_LIB) -lboost_program_options
++-lboost_system -lboost_thread $(THRIFT_LIB) -lboost_program_options \
++$(MAYBE_FREEBSD)
+ simple_router_LDFLAGS = -pthread

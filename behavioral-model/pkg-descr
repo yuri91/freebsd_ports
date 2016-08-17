@@ -1,0 +1,3 @@
+Reference implementation of the P4 software switch.
+Please look at https://github.com/p4lang/behavioral-model for how to use this.
+
