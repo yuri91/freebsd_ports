@@ -19,7 +19,7 @@ The patched files are due to problems with freebsd and the c++11 standard:
   suppressed.
 
 Also, the name should probably be changed to something more clear, and pkg-descr
-made more verbose
+made more verbose.
 
 ### net/py-nnpy
 
