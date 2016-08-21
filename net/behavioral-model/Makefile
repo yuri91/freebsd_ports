@@ -1,7 +1,7 @@
 # Created by: Yuri Iozzelli <y.iozzelli@gmail.com>
 
 PORTNAME=	behavioral-model	#TODO: meaningful name
-PORTVERSION=	1.1
+PORTVERSION=	1.2.0
 CATEGORIES=	net
 
 MAINTAINER=	dummy@FreeBSD.org
@@ -11,7 +11,6 @@ LICENSE=	APACHE20
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	p4lang
-GH_TAGNAME=	8dfe64c
 
 LIB_DEPENDS=	libJudy.so:${PORTSDIR}/devel/judy \
 		libgmp.so:${PORTSDIR}/math/gmp \
